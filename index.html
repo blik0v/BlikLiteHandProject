@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlikLite Hand v7.0 | Носимый интерфейс управления</title>
+    <title>BlikLite Hand v8.0 | Носимый интерфейс управления</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -90,32 +90,7 @@
         li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-blue); font-size: 1.2rem; line-height: 1.2; top: 1px; }
         strong { color: var(--text-light); font-weight: 600; }
         
-        /* Вопросы */
-        .question-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 20px; transition: 0.3s; }
-        .question-box:hover { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.02); }
-        .question-box h3 { color: #f59e0b; margin-top: 0; margin-bottom: 10px; }
         .note { background: rgba(59, 130, 246, 0.1); border-left: 3px solid var(--accent-blue); padding: 12px 15px; margin-top: 10px; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #93c5fd; }
-        
-        /* Кнопки */
-        .btn-messenger { display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; background: linear-gradient(90deg, var(--accent-blue), #8b5cf6); color: #fff; font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; text-decoration: none; border-radius: 50px; transition: 0.3s; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); border: none; cursor: pointer;}
-        .btn-messenger:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5); }
-        
-        /* Форма */
-        .feedback-section { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 24px; padding: 40px; text-align: center; margin-top: 40px; }
-        .feedback-section h2 { justify-content: center; color: var(--text-light); margin-bottom: 10px; font-size: 1.8rem; }
-        .feedback-section h2::before { display: none; }
-        .feedback-section p { color: var(--text-main); margin-bottom: 30px; }
-        .rating-stars { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-direction: row-reverse; }
-        .rating-stars input { display: none; }
-        .rating-stars label { font-size: 2.5rem; color: rgba(255,255,255,0.1); cursor: pointer; transition: 0.2s; }
-        .rating-stars label:hover, .rating-stars label:hover ~ label, .rating-stars input:checked ~ label { color: #ffeb3b; text-shadow: 0 0 15px #ffeb3b; }
-        form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        input[type="text"], textarea { width: 100%; padding: 15px 20px; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border); border-radius: 12px; color: var(--text-light); font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; transition: 0.3s; }
-        input[type="text"]:focus, textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
-        textarea { resize: vertical; min-height: 120px; }
-        button[type="submit"] { padding: 15px 30px; background: linear-gradient(90deg, var(--accent-blue), #8b5cf6); border: none; border-radius: 12px; color: #fff; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s; font-family: 'Manrope', sans-serif; letter-spacing: 1px; }
-        button[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-        .footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: #52525b; font-size: 0.9rem; margin-top: 40px; }
         
         /* Блок сборки */
         .assembly-section { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 24px; padding: 40px; margin-bottom: 24px; }
@@ -137,11 +112,11 @@
     </style>
 </head>
 <body>
-    <div class="scanline"></div> <!-- Сканирующая линия -->
+    <div class="scanline"></div>
     
     <div class="container">
         <header>
-            <h1>BlikLite Hand v7.0</h1>
+            <h1>BlikLite Hand v8.0</h1>
             <div class="subtitle">Компактный носимый интерфейс управления</div>
             <div class="author">Создатель: Петров Андрей</div>
         </header>
@@ -156,11 +131,13 @@
             
             <div class="card">
                 <h2>Левая рука (Умные часы)</h2>
+                <p>Это мощное автономное устройство, которое работает независимо. Внутри находятся:</p>
                 <ul>
-                    <li><strong>Контроллер:</strong> ESP32-C6-Touch-LCD-1.47 (Pre-soldered) — интеграционное решение "все в одном".</li>
-                    <li><strong>Экран и Тач:</strong> 1.47" IPS 172x320 со встроенным емкостным тачскрином (листание меню пальцем).</li>
-                    <li><strong>Гироскоп:</strong> Встроенный чип QMI8658 (не требует отдельного MPU-6050).</li>
-                    <li><strong>Связь:</strong> Встроенная керамическая антенна Wi-Fi 6 и Bluetooth 5.</li>
+                    <li><strong>Процессор:</strong> ESP32-S3 (двухъядерный, 240 МГц) с 8 МБ PSRAM.</li>
+                    <li><strong>Экран:</strong> 2.06" AMOLED (410x502), 16.7 млн цветов, с емкостным тачскрином.</li>
+                    <li><strong>Звук:</strong> Аудиокодек ES8311, микрофоны, динамик.</li>
+                    <li><strong>Датчики:</strong> 6-осевой гироскоп QMI8658, RTC (часы реального времени).</li>
+                    <li><strong>Питание:</strong> Чип управления AXP2101 и Li-Po аккумулятор.</li>
                 </ul>
             </div>
             
@@ -168,31 +145,50 @@
                 <h2>Правая рука (Сенсорный модуль)</h2>
                 <ul>
                     <li><strong>Контроллер:</strong> ESP32-S3-Zero — крошечная плата для максимальной компактности.</li>
-                    <li><strong>Дальномер:</strong> VL53L0X (GY-530) — лазерный, точность до 2 метров. Заменил громоздкий ультразвук.</li>
                     <li><strong>Гироскоп (MPU-6050):</strong> Отслеживает наклон кисти для управления поворотом камер или дронов.</li>
-                    <li><strong>Лазерный модуль:</strong> Визуальное целеуказание.</li>
+                    <li><strong>Лазерный модуль:</strong> Визуальное целеуказание, управляемое жестами.</li>
+                    <li><strong>Модуль CC1101 (433 МГц):</strong> Приемник и передатчик радиосигналов для управления умными устройствами.</li>
                 </ul>
             </div>
             
             <div class="card">
                 <h2>Связь и Питание</h2>
                 <h3>Связь</h3>
-                <p>Протокол ESP-NOW: прямая радиосвязь между часами (C6) и модулем (S3-Zero). Дальность стабильного сигнала: до 500 метров на открытой местности.</p>
+                <ul>
+                    <li><strong>ESP-NOW:</strong> Прямая радиосвязь между часами и модулем.</li>
+                    <li><strong>Дальность:</strong> До 500 метров на открытой местности.</li>
+                </ul>
+                
                 <h3>Питание</h3>
-                <p>Автономная работа от миниатюрных Li-Po аккумуляторов (3.7V) с модулями зарядки TP4056 Type-C. Обе части полностью беспроводные.</p>
+                <ul>
+                    <li><strong>Автономность:</strong> Миниатюрные Li-Po аккумуляторы (3.7V).</li>
+                    <li><strong>Управление:</strong> Встроенная система питания AXP2101.</li>
+                </ul>
+
+                <h3>Оптимизация ОС</h3>
+                <ul>
+                    <li><strong>Управление энергией:</strong> В своей ОС я реализовал умную систему, которая при простое переводит второстепенные модули (Wi-Fi, экран) в спящий режим, сохраняя при этом работу основных функций.</li>
+                    <li><strong>Активный режим:</strong> До 10 часов непрерывной работы при полной нагрузке (управление, связь, включенный экран).</li>
+                    <li><strong>Режим энергосбережения:</strong> До 4 дней автономной работы в фоновом режиме.</li>
+                </ul>
             </div>
 
             <!-- БЛОК КОНСТРУКЦИИ -->
             <div class="assembly-section">
                 <h2>Конструкция и эргономика</h2>
-                <p class="assembly-text">Проект переходит на новый уровень: от макетных плат к интегральным решениям. Обе части устройства будут спрятаны в защитные чехлы для максимального удобства.</p>
+                <p class="assembly-text">Проект перешел на новый уровень.</p>
                 
                 <div class="hand-box left-hand">
                     <h3>Левая рука: Часы</h3>
-                    <p>Плата ESP32-C6-Touch-LCD-1.47 вместе с аккумулятором крепится на запястье как обычные часы.</p>
+                    <p>Плата с AMOLED-экраном и аккумулятором крепится на запястье как обычные часы. Внутри устройства находятся:</p>
                     <ul>
+                        <li><strong>Экран:</strong> 2.06" AMOLED с емкостным тачскрином.</li>
+                        <li><strong>Процессор:</strong> ESP32-S3 (двухъядерный, 240 МГц, 8 МБ PSRAM).</li>
+                        <li><strong>Звук:</strong> Аудиокодек ES8311, микрофоны, динамик.</li>
+                        <li><strong>Датчики:</strong> 6-осевой гироскоп QMI8658, RTC (часы реального времени).</li>
+                        <li><strong>Питание:</strong> Чип AXP2101 и Li-Po аккумулятор.</li>
                         <li><strong>Интерфейс:</strong> Управление меню и функциями происходит напрямую через тачскрин.</li>
-                        <li><strong>Дисплей:</strong> Отображает список найденных IP-устройств, их расстояние и статус подключения.</li>
+                        <li><strong>Автономность:</strong> Часы работают как полностью самостоятельный гаджет.</li>
                     </ul>
                 </div>
 
@@ -201,81 +197,39 @@
                     <p>На тыльной стороне ладони или как компактный браслет на запястье размещается мини-корпус со всеми датчиками.</p>
                     <ul>
                         <li><strong>ESP32-S3-Zero:</strong> Обеспечивает беспроводную связь с часами и обработку данных с датчиков.</li>
-                        <li><strong>VL53L0X:</strong> Лазерный дальномер (I2C). Измеряет расстояние до объектов для навигации.</li>
                         <li><strong>MPU-6050:</strong> Отслеживает поворот руки (жесты).</li>
-                        <li><strong>Лазер KY-008:</strong> Включается по взмаху руки.</li>
+                        <li><strong>Лазер:</strong> Включается по взмаху руки или же через меню часов.</li>
+                        <li><strong>CC1101:</strong> Сканирует эфир и воспроизводит сигналы умных устройств.</li>
                     </ul>
-                    <p style="margin-top: 15px; font-style: italic; color: #888;">Все датчики висят на одной шине I2C (SDA/SCL), что позволяет сэкономить пины на ESP32-S3-Zero. Корпус планируется напечатать на 3D-принтере.</p>
                 </div>
             </div>
 
-            <!-- БЛОК ВОПРОСОВ -->
-            <div class="card" style="grid-column: 1 / -1;">
-                <h2>Вопросы для инженерной консультации</h2>
-                <div class="question-box">
-                    <h3>Вопрос 1. Шина I2C и адресация</h3>
-                    <p>У меня на правой руке (ESP32-S3-Zero) висят два I2C-устройства: VL53L0X (дальномер) и MPU-6050 (гироскоп). Могу ли я подключить их параллельно на одни и те же пины SDA/SCL? Не будет ли конфликта адресов, и нужны ли подтягивающие резисторы, если на модулях они уже распаяны?</p>
-                </div>
-                <div class="question-box">
-                    <h3>Вопрос 2. Питание ESP32-S3-Zero</h3>
-                    <p>У платы ESP32-S3-Zero нет USB-UART чипа. Для прошивки нужно включать режим USB CDC On Boot в Arduino IDE. Вопрос: насколько стабильно она работает от Li-Po аккумулятора 3.7V? Нужен ли внешний DC-DC преобразователь для стабильного питания датчиков или встроенного стабилизатора хватит?</p>
-                </div>
-                <div class="question-box">
-                    <h3>Вопрос 3. Тачскрин и гироскоп на ESP32-C6</h3>
-                    <p>На плате ESP32-C6-Touch-LCD-1.47 тачскрин и встроенный гироскоп (QMI8658) сидят на одной шине I2C. Как правильно организовать опрос тача и гироскопа, чтобы они не мешали друг другу? Нужно ли использовать разные библиотеки или можно обойтись стандартными средствами?</p>
-                    <div class="note"><strong>Примечание:</strong> Это касается программирования и распределения ресурсов на шине.</div>
-                </div>
-                <div class="question-box">
-                    <h3>Вопрос 4. Жесты на MPU-6050</h3>
-                    <p>Я планирую реализовать распознавание жестов (например, взмах рукой) прямо на ESP32-S3-Zero. Хватит ли мощности процессора для обработки данных с гироскопа и запуска простой нейросети на TensorFlow Lite, или лучше использовать простую пороговую фильтрацию (если угловая скорость > 300 град/с — это взмах)?</p>
-                </div>
+            <!-- БЛОК: ИНТЕРЕСНЫЕ ФУНКЦИИ -->
+            <div class="card" style="grid-column: 1 / -1; border-color: rgba(245, 158, 11, 0.5);">
+                <h2 style="color: #f59e0b;">Интересные функции BlikLite Hand</h2>
+                <p>Помимо базового управления, проект обладает уникальными возможностями благодаря модулю <strong>CC1101</strong> на правой руке.</p>
+                <ul>
+                    <li><strong>Сканирование сигналов:</strong> Устройство умеет «подслушивать» радиосигналы от бытовых пультов (телевизоры, светодиодные ленты, умные розетки) на частоте 433 МГц.</li>
+                    <li><strong>Запись и воспроизведение:</strong> Ты можешь поднести пульт к правой руке, нажать кнопку, сохранить код в память часов, а затем управлять этим устройством <strong>просто взмахом руки</strong>, не используя оригинальный пульт.</li>
+                    <li><strong>Универсальность:</strong> Это превращает часы в универсальный хаб управления для любого дома, где есть техника с радиопультом.</li>
+                </ul>
             </div>
 
-            <div style="grid-column: 1 / -1; text-align: center; margin: 20px 0;">
-                <a href="https://bliklitechat.relaxdev.ru" target="_blank" class="btn-messenger">🚀 Попробовать BlikLite Messenger</a>
-                <p style="color: #9ca3af; margin-top: 15px; font-size: 0.9rem;">Нажми, чтобы перейти в живой мессенджер</p>
+            <!-- БЛОК ПРИЛОЖЕНИЯ -->
+            <div class="card" style="grid-column: 1 / -1; border-color: rgba(16, 185, 129, 0.5);">
+                <h2>Разработка экосистемы: Мобильное приложение</h2>
+                <p>Я также разрабатываю <strong>собственное мобильное приложение-компаньон</strong>. Это не обязательная часть для работы часов, а удобный инструмент для их тонкой настройки и кастомизации.</p>
+                <ul>
+                    <li><strong>Редактирование интерфейса:</strong> Смена циферблатов, настройка меню и цветовых схем часов.</li>
+                    <li><strong>Калибровка:</strong> Точная настройка чувствительности гироскопа и порогов срабатывания жестов.</li>
+                    <li><strong>Управление макросами:</strong> Создание сложных сценариев для правой руки (например, «двойной взмах = включить ленту + выключить свет»).</li>
+                    <li><strong>Мониторинг:</strong> Просмотр статистики использования и настройка уведомлений.</li>
+                </ul>
+                <p class="note" style="margin-top: 15px;">Часы работают полностью автономно. Приложение нужно только для того, чтобы сделать их использование еще более удобным и персонализированным.</p>
             </div>
-            
-            <div class="feedback-section">
-                <h2>Оцените проект</h2>
-                <p>Ваше мнение очень важно для развития BlikLite Hand!<br>Поставьте оценку и сообщите о своих идеях и доработках.</p>
-                <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="event.preventDefault(); submitFeedback(this);">
-                    <input type="hidden" name="form-name" value="feedback" />
-                    <p style="display:none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-                    <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
-                    </div>
-                    <input type="text" name="name" placeholder="Ваше имя (необязательно)" />
-                    <textarea name="comment" placeholder="Ваш комментарий или вопрос..." required></textarea>
-                    <button type="submit">Отправить отзыв</button>
-                </form>
-                <div id="formSuccessMessage" style="display:none; color: #22c55e; text-align: center; margin-top: 20px; font-weight: bold; font-size: 1.2rem; padding: 20px; background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; border-radius: 12px;">✅ Спасибо! Ваш отзыв успешно отправлен.</div>
-            </div>
+
         </div>
-        <div class="footer">&copy; 2026 BlikLite Hand. Инженерный проект. Все права защищены.</div>
+        <div class="footer">&copy; 2026 BlikLite Hand v8.0. Инженерный проект. Все права защищены.</div>
     </div>
-    
-    <script>
-        function submitFeedback(form) {
-            const formData = new FormData(form);
-            const encoded = new URLSearchParams(formData).toString();
-            fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: encoded })
-            .then(() => {
-                form.style.display = 'none';
-                document.getElementById('formSuccessMessage').style.display = 'block';
-                const rating = formData.get('rating') || 'Не указана';
-                const name = formData.get('name') || 'Аноним';
-                const comment = formData.get('comment') || '';
-                fetch('/.netlify/functions/send-telegram', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ rating, name, comment })
-                }).catch(err => console.error("Ошибка функции:", err));
-            })
-            .catch((error) => { alert("Ошибка отправки в Netlify. Попробуйте еще раз."); });
-        }
-    </script>
 </body>
 </html>
