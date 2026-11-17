@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlikLite Hand v8.0 | Интерфейс единого будущего</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg-dark: #080514; /* Глубокий космический фиолетово-черный */
+            --bg-card: rgba(20, 15, 35, 0.6); 
+            --border: rgba(139, 92, 246, 0.2); 
+            --text-main: #a1a1aa; 
+            --text-light: #f4f4f5; 
+            --accent: #8b5cf6; /* Благородный фиолетовый */
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --accent-green: #10b981;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            overflow-x: hidden; 
+            background-image: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        h1 { 
+            font-family: 'Manrope', sans-serif; 
+            font-size: clamp(2.8rem, 8vw, 5.5rem); 
+            font-weight: 800; 
+            letter-spacing: -3px; 
+            margin-bottom: 10px; 
+            background: linear-gradient(180deg, #ffffff 0%, var(--accent) 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            animation: fadeIn 1.2s ease-out;
+            text-shadow: 0 0 60px var(--accent-glow);
+        }
+
+        .subtitle { 
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem); 
+            color: var(--accent); 
+            font-weight: 500; 
+            letter-spacing: 3px; 
+            margin-bottom: 30px; 
+            text-transform: uppercase;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .author { 
+            display: inline-flex; align-items: center; gap: 10px; 
+            padding: 10px 24px; 
+            background: rgba(139, 92, 246, 0.1); 
+            border: 1px solid var(--border); 
+            border-radius: 50px; 
+            font-size: 0.9rem; 
+            color: var(--text-light); 
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.8s ease-out;
+        }
+        .author::before { 
+            content: ''; display: block; width: 6px; height: 6px; 
+            background: var(--accent); border-radius: 50%; 
+            box-shadow: 0 0 10px var(--accent); 
+        }
+
+        /* --- МАНИФЕСТ --- */
+        .manifesto {
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            font-family: 'Manrope', sans-serif;
+            font-weight: 500;
+            color: var(--text-light);
+            text-align: center;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 0 auto 80px auto;
+            letter-spacing: -0.5px;
+        }
+        .manifesto span { color: var(--accent); font-weight: 500; }
+
+        /* --- ЗАГОЛОВКИ СЕКЦИЙ --- */
+        .section-header {
+            text-align: center;
+            margin: 80px 0 30px 0;
+        }
+        .section-header h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            color: var(--text-light);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        /* --- КАРТОЧКИ (Эффект стекла с неоном) --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+        }
+        .card:hover { 
+            transform: translateY(-5px);
+            border-color: var(--accent); 
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+        }
+        .card h3 { font-family: 'Manrope', sans-serif; font-size: 1.2rem; color: var(--text-light); margin-bottom: 15px; font-weight: 700; }
+        .card p, .card ul { font-size: 0.95rem; color: var(--text-main); }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { position: relative; padding-left: 20px; margin-bottom: 10px; font-size: 0.95rem; }
+        li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1; }
+        strong { color: var(--text-light); font-weight: 500; }
+
+        /* --- ТЕКСТОВЫЕ БЛОКИ --- */
+        .content-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(20px);
+        }
+        .content-block h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .content-block h3 { color: var(--text-light); font-size: 1.1rem; margin: 20px 0 10px 0; }
+        .content-block p { font-size: 1rem; margin-bottom: 15px; }
+
+        /* --- ФУТЕР --- */
+        .footer { text-align: center; padding: 50px 0; color: #52525b; font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 60px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
+        @media (max-width: 768px) { 
+            .grid-cards { grid-template-columns: 1fr; }
+            .content-block { padding: 25px 20px; }
+            h1 { letter-spacing: -1.5px; }
+            .section-header { margin: 50px 0 20px 0; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="hero">
+        <h1>BlikLite Hand</h1>
+        <div class="subtitle">Интерфейс единого будущего</div>
+        <div class="author">Создатель: Петров Андрей</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="manifesto">
+            Мы прикованы к экранам. Мы разучились управлять миром руками. 
+            <span>BlikLite Hand — это способ вернуть человеку свободу движений и вернуть технологии в реальный мир.</span>
+        </div>
+
+        <!-- 01. КОНЦЕПЦИЯ -->
+        <div class="section-header">
+            <h2>01. Концепция</h2>
+        </div>
+        <div class="content-block">
+            <p>BlikLite Hand — это носимый интерфейс, объединяющий реальный мир с цифровым. Устройство позволяет управлять роботами, умными устройствами и компьютером с помощью движений руки и компактного пульта управления в виде умных часов на запястье.</p>
+            <h3>Главная идея</h3>
+            <p>Технологии становятся все меньше, но интерфейсы остаются громоздкими. Моя цель — создать универсальный портативный продукт, который сделает управление сложной техникой интуитивно понятным. Мы уходим от громоздких макеток к реальному носимому гаджету.</p>
+        </div>
+
+        <!-- 02. ТЕХНОЛОГИИ -->
+        <div class="section-header">
+            <h2>02. Как это работает</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Левая рука (Умные часы)</h3>
+                <p>Это мощное автономное устройство, которое работает независимо. Внутри находятся:</p>
+                <ul>
+                    <li><strong>Процессор:</strong> ESP32-S3 (двухъядерный, 240 МГц) с 8 МБ PSRAM.</li>
+                    <li><strong>Экран:</strong> 2.06" AMOLED (410x502), 16.7 млн цветов, с емкостным тачскрином.</li>
+                    <li><strong>Звук:</strong> Аудиокодек ES8311, микрофоны, динамик.</li>
+                    <li><strong>Датчики:</strong> 6-осевой гироскоп QMI8658, RTC (часы реального времени).</li>
+                    <li><strong>Питание:</strong> Чип управления AXP2101 и Li-Po аккумулятор.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Правая рука (Сенсорный модуль)</h3>
+                <ul>
+                    <li><strong>Контроллер:</strong> ESP32-S3-Zero — крошечная плата для максимальной компактности.</li>
+                    <li><strong>Гироскоп (MPU-6050):</strong> Отслеживает наклон кисти для управления поворотом камер или дронов.</li>
+                    <li><strong>Лазерный модуль:</strong> Визуальное целеуказание, управляемое жестами.</li>
+                    <li><strong>Модуль CC1101 (433 МГц):</strong> Приемник и передатчик радиосигналов для управления умными устройствами.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2>Связь и Питание</h2>
+            <h3>Связь</h3>
+            <ul>
+                <li><strong>ESP-NOW:</strong> Прямая радиосвязь между часами и модулем.</li>
+                <li><strong>Дальность:</strong> До 150 метров на открытой местности.</li>
+            </ul>
+            <h3>Питание</h3>
+            <ul>
+                <li><strong>Автономность:</strong> Миниатюрные Li-Po аккумуляторы (3.7V).</li>
+                <li><strong>Управление:</strong> Встроенная система питания AXP2101.</li>
+            </ul>
+            <h3>Оптимизация ОС</h3>
+            <ul>
+                <li><strong>Управление энергией:</strong> В своей ОС я реализовал умную систему, которая при простое переводит второстепенные модули (Wi-Fi, экран) в спящий режим, сохраняя при этом работу основных функций.</li>
+                <li><strong>Активный режим:</strong> До 10 часов непрерывной работы при полной нагрузке (управление, связь, включенный экран).</li>
+                <li><strong>Режим энергосбережения:</strong> До 4 дней автономной работы в фоновом режиме.</li>
+            </ul>
+        </div>
+
+        <!-- 03. КОНСТРУКЦИЯ -->
+        <div class="section-header">
+            <h2>03. Конструкция и эргономика</h2>
+        </div>
+        <div class="content-block">
+            <p>Проект перешел на новый уровень.</p>
+            <h3>Левая рука: Часы</h3>
+            <p>Плата с AMOLED-экраном и аккумулятором крепится на запястье как обычные часы. Внутри устройства находятся:</p>
+            <ul>
+                <li><strong>Экран:</strong> 2.06" AMOLED с емкостным тачскрином.</li>
+                <li><strong>Процессор:</strong> ESP32-S3 (двухъядерный, 240 МГц, 8 МБ PSRAM).</li>
+                <li><strong>Звук:</strong> Аудиокодек ES8311, микрофоны, динамик.</li>
+                <li><strong>Датчики:</strong> 6-осевой гироскоп QMI8658, RTC (часы реального времени).</li>
+                <li><strong>Питание:</strong> Чип AXP2101 и Li-Po аккумулятор.</li>
+                <li><strong>Интерфейс:</strong> Управление меню и функциями происходит напрямую через тачскрин.</li>
+                <li><strong>Автономность:</strong> Часы работают как полностью самостоятельный гаджет.</li>
+            </ul>
+
+            <h3>Правая рука: Сенсорный модуль</h3>
+            <p>На тыльной стороне ладони или как компактный браслет на запястье размещается мини-корпус со всеми датчиками.</p>
+            <ul>
+                <li><strong>ESP32-S3-Zero:</strong> Обеспечивает беспроводную связь с часами и обработку данных с датчиков.</li>
+                <li><strong>MPU-6050:</strong> Отслеживает поворот руки (жесты).</li>
+                <li><strong>Лазер:</strong> Включается по взмаху руки или же через меню часов.</li>
+                <li><strong>CC1101:</strong> Сканирует эфир и воспроизводит сигналы умных устройств.</li>
+            </ul>
+        </div>
+
+        <!-- 04. ФУНКЦИИ -->
+        <div class="section-header">
+            <h2>04. Интересные функции</h2>
+        </div>
+        <div class="content-block">
+            <p>Помимо базового управления, проект обладает уникальными возможностями благодаря модулю <strong>CC1101</strong> на правой руке.</p>
+            <ul>
+                <li><strong>Анализ сигналов:</strong> Устройство умеет перехватывать для интеграции радиосигналы от бытовых пультов (телевизоры, светодиодные ленты, умные розетки) на частоте 433 МГц.</li>
+                <li><strong>Запись и воспроизведение:</strong> Ты можешь поднести пульт к правой руке, нажать кнопку, сохранить код в память часов, а затем управлять этим устройством <strong>просто взмахом руки</strong>, не используя оригинальный пульт.</li>
+                <li><strong>Универсальность:</strong> Это превращает часы в универсальный хаб управления для любого дома, где есть техника с радиопультом.</li>
+            </ul>
+        </div>
+
+        <!-- 05. ЭКОСИСТЕМА -->
+        <div class="section-header">
+            <h2>05. Экосистема</h2>
+        </div>
+        <div class="content-block">
+            <p>Помимо самих часов, я разрабатываю собственное мобильное приложение-компаньон. Это не обязательная часть для работы часов, а удобный инструмент для их тонкой настройки и кастомизации.</p>
+            <ul>
+                <li><strong>Редактирование интерфейса:</strong> Смена циферблатов, настройка меню и цветовых схем часов.</li>
+                <li><strong>Калибровка:</strong> Точная настройка чувствительности гироскопа и порогов срабатывания жестов.</li>
+                <li><strong>Управление макросами:</strong> Создание сложных сценариев для правой руки (например, «двойной взмах = включить ленту + выключить свет»).</li>
+                <li><strong>Мониторинг:</strong> Просмотр статистики использования и настройка уведомлений.</li>
+            </ul>
+            <p>Часы работают полностью автономно. Приложение нужно только для того, чтобы сделать их использование еще более удобным и персонализированным.</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 BlikLite Hand v8.0. Инженерный проект. Все права защищены.
+        </div>
+    </div>
+
+</body>
+</html>
